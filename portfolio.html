@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for Icons -->
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+    .hero {
+      background-attachment: fixed;
+      background-size: cover;
+      height: 100vh;
+      color: white;
+    }
+    .hero img {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    .card-title {
+      font-size: 1.25rem;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+    }
+    .sidebar a {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Spinner -->
+  <div class="spinner-border text-primary" role="status" id="spinner" style="display:none;">
+    <span class="sr-only">Loading...</span>
+  </div>
+
+  <!-- Navbar (Top) -->
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #333;">
+    <a class="navbar-brand text-white" href="#">My Portfolio</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="index.html" onclick="navigate(event, 'index.html')">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="contact.html" onclick="navigate(event, 'contact.html')">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="portfolio.html" onclick="navigate(event, 'portfolio.html')">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="Weather.html" onclick="navigate(event, 'Weather.html')">Weather</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="Ecommerce.html" onclick="navigate(event, 'Ecommerce.html')">E-commerce</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Sidebar (Left) -->
+  <div class="sidebar bg-dark text-white p-3 d-none d-md-block" style="height: 100vh; position: fixed; top: 56px; left: 0; width: 250px;">
+    <!-- Social Media Links -->
+    <div class="mt-5">
+      <a href="https://www.instagram.com/simply_gelou/" target="_blank" class="text-white d-block mb-3">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
+      <a href="https://www.facebook.com/Asnawie.Sapra" target="_blank" class="text-white d-block mb-3">
+        <i class="fab fa-facebook"></i> Facebook
+      </a>
+      <a href="https://myaccount.google.com/u/1/?hl=en&utm_source=OGB&utm_medium=act&gar=WzJd&pli=1" target="_blank" class="text-white d-block">
+        <i class="fab fa-google"></i> Google
+      </a>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content" style="margin-left: 270px;"> <!-- Added margin to prevent overlap with the sidebar -->
+    <!-- Hero Section -->
+    <div id="hero" class="hero text-center py-5" style="background: linear-gradient(45deg, #6a11cb, #2575fc);">
+      <img src="me.jpg" alt="Angelou Carpio" class="rounded-circle mb-3" style="max-width: 150px;">
+      <h1 class="display-4 text-white">Hi, I'm Asnawie Sapra</h1>
+      <p class="lead text-white">Web Developer | IT Student | Passionate about creating awesome solutions.</p>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="container py-5">
+      <h2 class="text-center mb-4">About Me</h2>
+      <p class="lead">
+        I am an IT student specializing in web development and software engineering. My focus is on building creative and efficient solutions to complex problems. I enjoy exploring new technologies and enhancing my skills through hands-on projects.
+      </p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container py-5">
+      <h2 class="text-center mb-4">My Projects</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="project-1.jpg" class="card-img-top" alt="Flag Quiz Game">
+            <div class="card-body">
+              <h5 class="card-title">Flag Quiz Game</h5>
+              <p class="card-text">A trivia game that challenges users to identify flags from different countries. Built with JavaScript and Firebase.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="project-2.jpg" class="card-img-top" alt="Weather App">
+            <div class="card-body">
+              <h5 class="card-title">Weather App</h5>
+              <p class="card-text">A web app that displays real-time weather information using OpenWeather API. Fully responsive and interactive.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="project-3.jpg" class="card-img-top" alt="E-commerce Website">
+            <div class="card-body">
+              <h5 class="card-title">E-commerce Website</h5>
+              <p class="card-text">A dynamic e-commerce platform with product browsing, cart functionality, and secure payment integration.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="container py-5">
+      <h2 class="text-center mb-4">Education</h2>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Bachelor of Science in Information Technology</h5>
+          <p class="card-text">Specialization: Web Development and Software Engineering</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container py-5">
+      <h2 class="text-center mb-4">Contact Me</h2>
+      <p class="lead">Feel free to reach out to me!</p>
+      <form>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" placeholder="Your email">
+        </div>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea class="form-control" id="message" rows="4" placeholder="Your message"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+      <p class="mt-4">Or connect with me on:</p>
+      <div class="d-flex justify-content-center">
+        <a href="mailto:angelou.carpio@example.com" class="text-dark mx-2"><i class="fas fa-envelope"></i></a>
+        <a href="https://linkedin.com/in/asnawiesapra" class="text-dark mx-2"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/asnawie.sapra" class="text-dark mx-2"><i class="fab fa-github"></i></a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+    <p>© 2024 Angelou Carpio. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Custom Navigate Function -->
+  <script>
+    function navigate(event, target) {
+      event.preventDefault();
+      window.location.href = target;
+    }
+  </script>
+</body>
+</html>

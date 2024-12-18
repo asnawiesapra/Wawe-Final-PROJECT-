@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-commerce Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        /* General Styles */
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            font-weight: 700;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ddd;
+            font-weight: 500;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #007bff !important;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+        /* Spinner Styling */
+        .spinner {
+            display: none;
+            border: 8px solid #ddd;
+            border-top: 8px solid #007bff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Product Cards Styling */
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: 600;
+            text-align: center;
+            padding: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card-body {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .card-body img {
+            max-height: 150px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .card-body p {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .btn-primary:disabled {
+            background-color: #ccc;
+            border-color: #ccc;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Container Styling */
+        .container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="Ecommerce.html">
+                    My Website
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html" onclick="navigate(event, 'index.html')">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html" onclick="navigate(event, 'contact.html')">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="portfolio.html" onclick="navigate(event, 'portfolio.html')">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Weather.html" onclick="navigate(event, 'Weather.html')">Weather</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="Ecommerce.html" onclick="navigate(event, 'Ecommerce.html')">E-commerce</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spinner -->
+    <div class="container text-center my-5">
+        <div class="spinner" id="spinner"></div>
+        <h1 class="text-primary display-4">Welcome to my <span class="text-warning">E-commerce Dashboard</span></h1>
+    </div>
+
+    <!-- Product List -->
+    <div class="container" id="product-list" style="display: none;">
+        <div class="row">
+            <!-- Products will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <p>Contact Us | Follow Us on Social Media</p>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: "Laptop", price: 1500, stock: 5, image: "Laptop.png" },
+            { id: 2, name: "Headphones", price: 100, stock: 10, image: "headphones.png" },
+            { id: 3, name: "Keyboard", price: 50, stock: 20, image: "keyboard.jpg" }
+        ];
+
+        // Render products
+        function renderProducts() {
+            let html = '';
+            products.forEach((product) => {
+                html += `
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-header">${product.name}</div>
+                            <div class="card-body">
+                                <img src="${product.image}" class="img-fluid" alt="${product.name}">
+                                <p>Price: $${product.price}</p>
+                                <p>Stock: ${product.stock}</p>
+                                <button class="btn btn-primary add-to-cart" data-id="${product.id}" ${product.stock === 0 ? 'disabled' : ''}>Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            document.querySelector('#product-list .row').innerHTML = html;
+            document.getElementById('product-list').style.display = 'block';
+            document.getElementById('spinner').style.display = 'none'; // Hide spinner after products are rendered
+        }
+
+        // Function to add products to the cart
+        function addToCart(productId) {
+            const product = products.find((p) => p.id === Number(productId));
+            if (product && product.stock > 0) {
+                product.stock--; // Reduce stock by 1
+                alert(`The ${product.name} was added to the cart!`);
+                renderProducts(); // Re-render to update stock
+            }
+        }
+
+        // Event listener for add to cart buttons
+        document.addEventListener("DOMContentLoaded", () => {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    const productId = button.getAttribute('data-id');
+                    addToCart(productId);
+                });
+            });
+            renderProducts(); // Render products once the page is loaded
+        });
+
+        // Navigate with spinner
+        function navigate(event, url) {
+            event.preventDefault();
+            document.getElementById('spinner').style.display = 'block'; // Show spinner
+            setTimeout(() => {
+                window.location.href = url; // Redirect after spinner shows
+            }, 1000); // Simulate delay for spinner visibility
+        }
+    </script>
+</body>
+
+</html>

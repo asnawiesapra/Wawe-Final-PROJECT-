@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* General Styles */
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-brand {
+            font-size: 1.6rem;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ddd;
+            font-weight: 500;
+            transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #fff;
+            background-color: #f39c12;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+        /* Spinner Styling */
+        .spinner {
+            display: none;
+            border: 8px solid #ddd;
+            border-top: 8px solid #f39c12;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1.5s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            padding-top: 80px;
+            text-align: center;
+        }
+
+        .main-content h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .main-content h1 span {
+            color: #f39c12;
+        }
+
+        /* Image Styling */
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .img-fluid:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+        }
+
+        /* Container Layout */
+        .container {
+            padding: 30px 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="index.html">My Website</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html" onclick="navigate(event, 'index.html')">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html" onclick="navigate(event, 'contact.html')">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="portfolio.html" onclick="navigate(event, 'portfolio.html')">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Weather.html" onclick="navigate(event, 'Weather.html')">Weather</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Ecommerce.html" onclick="navigate(event, 'Ecommerce.html')">E-commerce</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="container main-content">
+        <h1>
+            Welcome to my <span>Website</span>
+        </h1>
+        <div class="spinner" id="spinner"></div>
+    </div>
+
+    <!-- Image Section -->
+    <div class="container text-center">
+        <img class="img-fluid" src="me.jpg" alt="My Picture" />
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 My Website | All Rights Reserved</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Navigation function
+        function navigate(event, url) {
+            event.preventDefault();
+            document.getElementById('spinner').style.display = 'block';
+            setTimeout(() => {
+                window.location.href = url;
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - My Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* General Styles */
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        h1 {
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ddd;
+            font-weight: 500;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #007bff !important;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+        /* Spinner Styling */
+        .spinner {
+            display: none;
+            border: 8px solid #ddd;
+            border-top: 8px solid #007bff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Contact Form Styling */
+        .contact-form {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .contact-form:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-form label {
+            font-weight: 600;
+            color: #333333;
+        }
+
+        .contact-form .form-control {
+            border-radius: 6px;
+            border: 1px solid #cccccc;
+            padding: 12px;
+            box-shadow: none;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .contact-form .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 12px rgba(0, 123, 255, 0.5);
+        }
+
+        .contact-form button {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 12px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+        }
+
+        .contact-form button:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .output-message {
+            display: none;
+            padding: 10px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        .output-message.text-success {
+            color: #28a745;
+        }
+
+        .output-message.text-danger {
+            color: #dc3545;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Image styling */
+        .contact-image {
+            max-height: 100%;
+            width: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .contact-form {
+                padding: 20px;
+            }
+
+            .contact-image {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="index.html">
+                    My Website
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html" onclick="navigate(event, 'index.html')">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="contact.html" onclick="navigate(event, 'contact.html')">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="portfolio.html" onclick="navigate(event, 'portfolio.html')">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Weather.html" onclick="navigate(event, 'Weather.html')">Weather</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Ecommerce.html" onclick="navigate(event, 'Ecommerce.html')">E-commerce</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <div class="container my-5">
+        <div class="spinner" id="spinner"></div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form id="contact-form" onsubmit="handleSubmit(event)" class="contact-form">
+                    <h1>Contact Us</h1>
+                    <p class="text-muted mb-4">We'd love to hear from you. Please fill out the form below.</p>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject:</label>
+                        <input type="text" id="subject" name="subject" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Send</button>
+                    <div class="output-message mt-3" id="output-message"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Contact Us | Follow Us on Social Media</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function showSpinner() {
+            document.getElementById('spinner').style.display = 'block';
+        }
+
+        function hideSpinner() {
+            document.getElementById('spinner').style.display = 'none';
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            showSpinner();
+
+            setTimeout(() => {
+                hideSpinner();
+                document.getElementById('output-message').textContent = 'Message sent successfully!';
+                document.getElementById('output-message').className = 'output-message text-success';
+                document.getElementById('output-message').style.display = 'block';
+                document.getElementById('contact-form').reset();
+            }, 2000);
+        }
+
+        function navigate(event, url) {
+            event.preventDefault();
+            showSpinner();
+            setTimeout(() => {
+                window.location.href = url;
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
